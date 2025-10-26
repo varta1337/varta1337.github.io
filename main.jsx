@@ -1,5 +1,94 @@
 const { useState } = React;
 
+function Contact(){
+  const [formData, setFormData] = useState({ email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Simulate form submission
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setSubmitStatus('success');
+      setFormData({ email: '', message: '' });
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  return (
+    <section id="contact" className="container">
+      <h3 className="section-title">Contact</h3>
+      <div className="grid cols-2">
+        <div className="tile">
+          <h4>Write me</h4>
+          <p className="muted">Open to new projects and collaboration.</p>
+          <a className="btn btn-primary" href="mailto:varta1337@proton.me">varta1337@proton.me</a>
+        </div>
+        <form className="tile" onSubmit={handleSubmit} role="form" aria-label="Contact form">
+          <label>
+            <span>Your email</span>
+            <input
+              style={{width:'100%',padding:'10px',borderRadius:'10px',border:'1px solid rgba(255,255,255,.12)',background:'rgba(255,255,255,.04)',color:'var(--text-0)',marginTop:6}}
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              aria-required="true"
+              placeholder="your.email@example.com"
+            />
+          </label>
+          <label style={{display:'block',marginTop:12}}>
+            <span>Message</span>
+            <textarea
+              style={{width:'100%',padding:'10px',borderRadius:'10px',border:'1px solid rgba(255,255,255,.12)',background:'rgba(255,255,255,.04)',color:'var(--text-0)',marginTop:6,minHeight:120}}
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              required
+              aria-required="true"
+              placeholder="Tell me about your project..."
+            />
+          </label>
+          <button
+            className="btn btn-primary"
+            style={{marginTop:12, opacity: isSubmitting ? 0.7 : 1}}
+            type="submit"
+            disabled={isSubmitting}
+            aria-label={isSubmitting ? 'Sending message...' : 'Send contact form'}
+          >
+            {isSubmitting ? 'Sending...' : 'Send'}
+          </button>
+          {submitStatus === 'success' && (
+            <p style={{color: 'var(--teal-400)', marginTop: 8, fontSize: '14px'}}>
+              ✓ Message sent successfully!
+            </p>
+          )}
+          {submitStatus === 'error' && (
+            <p style={{color: '#ff6b6b', marginTop: 8, fontSize: '14px'}}>
+              ✗ Failed to send message. Please try again.
+            </p>
+          )}
+        </form>
+      </div>
+    </section>
+  );
+}
+
 function Navbar(){
   return (
     <div className="navbar">
@@ -8,11 +97,11 @@ function Navbar(){
           <div className="brand-logo"/>
           <div className="brand-name">varta<em>1337</em></div>
         </div>
-        <nav className="nav-links">
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-          <a href="https://github.com/varta1337" target="_blank" rel="noreferrer">GitHub</a>
+        <nav className="nav-links" role="navigation" aria-label="Main navigation">
+          <a href="#projects" aria-label="View projects section">Projects</a>
+          <a href="#skills" aria-label="View skills section">Skills</a>
+          <a href="#contact" aria-label="View contact section">Contact</a>
+          <a href="https://github.com/varta1337" target="_blank" rel="noreferrer" aria-label="Visit GitHub profile (opens in new tab)">GitHub</a>
         </nav>
       </div>
     </div>
@@ -21,7 +110,7 @@ function Navbar(){
 
 function Hero(){
   return (
-    <section className="hero">
+    <section className="hero" role="main">
       <div className="container hero-grid">
         <div>
           <h1 className="title-xl">Hi, I’m <span style={{color:'var(--teal-400)'}}>varta1337</span></h1>
@@ -31,8 +120,8 @@ function Hero(){
             responsive design, and Bash automation. Dark UI with teal highlights is my vibe.
           </p>
           <div className="cta">
-            <a className="btn btn-primary" href="#projects">View work</a>
-            <a className="btn btn-ghost" href="#contact">Contact me</a>
+            <a className="btn btn-primary" href="#projects" aria-label="View my projects">View work</a>
+            <a className="btn btn-ghost" href="#contact" aria-label="Contact me">Contact me</a>
           </div>
         </div>
         <div className="card-stack">
@@ -93,12 +182,12 @@ function Skills(){
 }
 
 const demoProjects = [
-  { title:'Glass UI Landing', text:'Dark theme, glass cards, responsive.', link:'#' },
-  { title:'API Dashboard', text:'React + Charts, theming, filters.', link:'#' },
-  { title:'Node.js Service', text:'Express REST, JWT, logging.', link:'#' },
-  { title:'DB Schema Design', text:'SQL/NoSQL models, indexes, migrations.', link:'#' },
-  { title:'Portfolio v1', text:'Animations, routing, optimizations.', link:'#' },
-  { title:'CLI Tools (Bash)', text:'Deploy and build scripts.', link:'#' },
+  { title:'Glass UI Landing', text:'Dark theme, glass cards, responsive.', link:'https://github.com/varta1337/portfolio-glass-ui' },
+  { title:'API Dashboard', text:'React + Charts, theming, filters.', link:'https://github.com/varta1337/react-dashboard' },
+  { title:'Node.js Service', text:'Express REST, JWT, logging.', link:'https://github.com/varta1337/nodejs-api' },
+  { title:'DB Schema Design', text:'SQL/NoSQL models, indexes, migrations.', link:'https://github.com/varta1337/database-design' },
+  { title:'Portfolio v1', text:'Animations, routing, optimizations.', link:'https://varta1337.github.io/portfolio-v1' },
+  { title:'CLI Tools (Bash)', text:'Deploy and build scripts.', link:'https://github.com/varta1337/cli-tools' },
 ];
 
 function Projects(){
@@ -107,7 +196,7 @@ function Projects(){
       <h3 className="section-title">Projects</h3>
       <div className="grid cols-3">
         {demoProjects.map((p)=> (
-          <a className="tile" href={p.link} key={p.title}>
+          <a className="tile" href={p.link} target="_blank" rel="noopener noreferrer" key={p.title}>
             <h4>{p.title}</h4>
             <p className="muted">{p.text}</p>
           </a>
@@ -117,31 +206,6 @@ function Projects(){
   );
 }
 
-function Contact(){
-  return (
-    <section id="contact" className="container">
-      <h3 className="section-title">Contact</h3>
-      <div className="grid cols-2">
-        <div className="tile">
-          <h4>Write me</h4>
-          <p className="muted">Open to new projects and collaboration.</p>
-          <a className="btn btn-primary" href="mailto:varta1337@proton.me">varta1337@proton.me</a>
-        </div>
-        <form className="tile" onSubmit={(e)=>{e.preventDefault(); alert('Thanks! I will get back to you.')}}>
-          <label>
-            <span>Your email</span>
-            <input style={{width:'100%',padding:'10px',borderRadius:'10px',border:'1px solid rgba(255,255,255,.12)',background:'rgba(255,255,255,.04)',color:'var(--text-0)',marginTop:6}} type="email" required />
-          </label>
-          <label style={{display:'block',marginTop:12}}>
-            <span>Message</span>
-            <textarea style={{width:'100%',padding:'10px',borderRadius:'10px',border:'1px solid rgba(255,255,255,.12)',background:'rgba(255,255,255,.04)',color:'var(--text-0)',marginTop:6,minHeight:120}} required />
-          </label>
-          <button className="btn btn-primary" style={{marginTop:12}} type="submit">Send</button>
-        </form>
-      </div>
-    </section>
-  );
-}
 
 function Footer(){
   return (

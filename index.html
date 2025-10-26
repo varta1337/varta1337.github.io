@@ -4,15 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>varta1337 — Portfolio</title>
-    <meta name="description" content="Portfolio of frontend/full‑stack developer varta1337: HTML, CSS, JavaScript, Node.js, React, databases, and Bash experience." />
+    <meta name="description" content="Frontend / Full-Stack Developer specializing in React, Node.js, and modern web technologies. View my portfolio projects and get in touch for collaboration opportunities." />
+    <meta name="keywords" content="frontend developer, full-stack developer, react, nodejs, javascript, portfolio, web development, varta1337" />
+    <meta name="author" content="varta1337" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#11b5b5" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://varta1337.github.io/" />
+    <meta property="og:title" content="varta1337 — Frontend / Full-Stack Developer" />
+    <meta property="og:description" content="Frontend / Full-Stack Developer specializing in React, Node.js, and modern web technologies. View my portfolio projects and get in touch for collaboration opportunities." />
+    <meta property="og:image" content="https://varta1337.github.io/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://varta1337.github.io/" />
+    <meta property="twitter:title" content="varta1337 — Frontend / Full-Stack Developer" />
+    <meta property="twitter:description" content="Frontend / Full-Stack Developer specializing in React, Node.js, and modern web technologies." />
+    <meta property="twitter:image" content="https://varta1337.github.io/og-image.png" />
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
+    <!-- Preload critical font -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"></noscript>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230b0f12'/%3E%3Cpath d='M26 70 L50 20 L74 70' stroke='%2311b5b5' stroke-width='10' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"/>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "varta1337",
+      "jobTitle": "Frontend / Full-Stack Developer",
+      "description": "Frontend / Full-Stack Developer specializing in React, Node.js, and modern web technologies",
+      "url": "https://varta1337.github.io",
+      "email": "varta1337@proton.me",
+      "sameAs": [
+        "https://github.com/varta1337"
+      ],
+      "knowsAbout": [
+        "React",
+        "Node.js",
+        "JavaScript",
+        "TypeScript",
+        "HTML",
+        "CSS",
+        "Web Development",
+        "Frontend Development",
+        "Full-Stack Development"
+      ],
+      "programmingLanguage": [
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "C#",
+        "Bash"
+      ]
+    }
+    </script>
+
+    <!-- Preload critical scripts -->
+    <link rel="preload" href="https://unpkg.com/react@18/umd/react.development.js" as="script" crossorigin>
+    <link rel="preload" href="https://unpkg.com/react-dom@18/umd/react-dom.development.js" as="script" crossorigin>
+    <link rel="preload" href="https://unpkg.com/@babel/standalone/babel.min.js" as="script">
 
     <!-- React + Babel (no build) -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
