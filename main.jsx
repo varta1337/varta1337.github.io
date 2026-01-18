@@ -10,7 +10,6 @@ function Contact(){
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Simulate form submission
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setSubmitStatus('success');
